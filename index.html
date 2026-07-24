@@ -1,4 +1,597 @@
-<html>
-<h1>Under Contruction</h1>
-This page is under contruction
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>National Component Registry</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+  :root{
+    --ink:#1C2B39;
+    --paper:#F3EEE2;
+    --card:#FBF8EF;
+    --rule:#DCD3B9;
+    --steel:#3D5A73;
+    --steel-deep:#2A4054;
+    --stamp:#A6402F;
+    --graphite:#6B6558;
+    --moss:#4B6B4C;
+    --amber:#A5721F;
+  }
+
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--paper);
+    background-image:
+      radial-gradient(circle at 1px 1px, rgba(28,43,57,0.06) 1px, transparent 0);
+    background-size:22px 22px;
+    color:var(--ink);
+    font-family:'IBM Plex Sans', sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;}
+
+  .wrap{
+    max-width:920px;
+    margin:0 auto;
+    padding:28px 20px 80px;
+  }
+
+  /* ---------- MASTHEAD ---------- */
+  .masthead{
+    display:flex;
+    align-items:center;
+    gap:20px;
+    border-bottom:3px solid var(--ink);
+    padding-bottom:18px;
+    margin-bottom:6px;
+  }
+  .seal{flex:0 0 auto;}
+  .masthead-text{flex:1 1 auto; min-width:0;}
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--graphite);
+    margin:0 0 6px;
+  }
+  h1{
+    font-family:'Roboto Slab', serif;
+    font-weight:700;
+    font-size:clamp(26px,5vw,38px);
+    line-height:1.05;
+    margin:0 0 6px;
+    letter-spacing:-0.01em;
+  }
+  .tagline{
+    margin:0;
+    color:var(--graphite);
+    font-size:14.5px;
+  }
+  .cycle-tag{
+    flex:0 0 auto;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:0.06em;
+    text-align:right;
+    color:var(--steel-deep);
+    border-left:1px solid var(--rule);
+    padding-left:16px;
+    line-height:1.6;
+    white-space:nowrap;
+  }
+  .cycle-tag span{
+    display:block;
+    color:var(--moss);
+    font-weight:600;
+  }
+  @media (max-width:600px){
+    .cycle-tag{display:none;}
+    .masthead{gap:14px;}
+  }
+
+  /* ---------- TABS ---------- */
+  .tabbar{
+    display:flex;
+    gap:4px;
+    margin:22px 0 0;
+    border-bottom:1px solid var(--rule);
+  }
+  .tabbtn{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+    background:transparent;
+    border:1px solid var(--rule);
+    border-bottom:none;
+    color:var(--graphite);
+    padding:11px 18px;
+    cursor:pointer;
+    border-radius:5px 5px 0 0;
+    position:relative;
+    top:1px;
+    transition:background .15s ease, color .15s ease;
+  }
+  .tabbtn:hover{color:var(--ink);}
+  .tabbtn.active{
+    background:var(--card);
+    color:var(--ink);
+    border-color:var(--rule);
+    border-bottom:1px solid var(--card);
+    font-weight:600;
+  }
+  .tabbtn:focus-visible{outline:2px solid var(--steel); outline-offset:2px;}
+
+  .panel{
+    background:var(--card);
+    border:1px solid var(--rule);
+    border-top:none;
+    padding:26px 24px 30px;
+    border-radius:0 0 8px 8px;
+    animation:fadeIn .28s ease;
+  }
+  @keyframes fadeIn{
+    from{opacity:0; transform:translateY(4px);}
+    to{opacity:1; transform:translateY(0);}
+  }
+  .panel[hidden]{display:none;}
+
+  .panel-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    gap:16px;
+    flex-wrap:wrap;
+    margin-bottom:18px;
+  }
+  .panel-head h2{
+    font-family:'Roboto Slab', serif;
+    font-size:20px;
+    margin:0 0 4px;
+  }
+  .panel-head p{
+    margin:0;
+    color:var(--graphite);
+    font-size:13.5px;
+    max-width:46ch;
+  }
+
+  .search{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    padding:9px 12px;
+    border:1px solid var(--rule);
+    border-radius:5px;
+    background:var(--paper);
+    color:var(--ink);
+    width:220px;
+    max-width:100%;
+  }
+  .search:focus-visible{outline:2px solid var(--steel); outline-offset:1px;}
+  .search::placeholder{color:#A39C87;}
+
+  .count-note{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    color:var(--graphite);
+    margin:0 0 14px;
+  }
+
+  /* ---------- COMPANY CARDS ---------- */
+  .list{display:flex; flex-direction:column; gap:10px;}
+
+  .co-card{
+    display:flex;
+    align-items:center;
+    gap:18px;
+    border:1px solid var(--rule);
+    background:var(--paper);
+    border-radius:8px;
+    padding:14px 18px;
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .co-card:hover{
+    transform:translateY(-2px);
+    box-shadow:0 6px 14px rgba(28,43,57,0.08);
+  }
+  .stamp-wrap{flex:0 0 auto; width:68px; height:68px;}
+  .co-main{flex:1 1 auto; min-width:0;}
+  .co-name{
+    font-family:'Roboto Slab', serif;
+    font-size:17px;
+    font-weight:600;
+    margin:0 0 3px;
+  }
+  .co-sector{
+    font-size:12.5px;
+    color:var(--graphite);
+    margin:0 0 8px;
+  }
+  .tier-tag{
+    display:inline-block;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10.5px;
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+    padding:3px 8px;
+    border-radius:100px;
+    font-weight:600;
+  }
+  .tier-high{background:rgba(75,107,76,0.14); color:var(--moss);}
+  .tier-mid{background:rgba(61,90,115,0.14); color:var(--steel-deep);}
+  .tier-low{background:rgba(165,114,31,0.16); color:var(--amber);}
+
+  .co-id{
+    flex:0 0 auto;
+    text-align:right;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    color:var(--graphite);
+  }
+  .co-id b{
+    display:block;
+    color:var(--ink);
+    font-size:13px;
+  }
+
+  /* ---------- PART CARDS ---------- */
+  .part-card{
+    display:flex;
+    align-items:center;
+    gap:16px;
+    border:1px solid var(--rule);
+    background:var(--paper);
+    border-radius:8px;
+    padding:12px 18px;
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .part-card:hover{
+    transform:translateY(-2px);
+    box-shadow:0 6px 14px rgba(28,43,57,0.08);
+  }
+  .swatch{
+    flex:0 0 auto;
+    width:52px;
+    height:52px;
+    border:1.5px dashed var(--steel);
+    border-radius:6px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:var(--steel-deep);
+    background:rgba(61,90,115,0.05);
+  }
+  .swatch svg{width:30px; height:30px;}
+  .part-main{flex:1 1 auto; min-width:0;}
+  .part-name{
+    font-family:'Roboto Slab', serif;
+    font-weight:600;
+    font-size:15.5px;
+    margin:0 0 3px;
+  }
+  .part-cat{
+    font-size:12px;
+    color:var(--graphite);
+    margin:0;
+  }
+  .part-meta{
+    flex:0 0 auto;
+    text-align:right;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    color:var(--graphite);
+  }
+  .part-count{
+    display:block;
+    color:var(--ink);
+    font-size:14px;
+    font-weight:600;
+  }
+  .part-count span{
+    font-weight:400;
+    color:var(--graphite);
+    font-size:10.5px;
+    text-transform:uppercase;
+    letter-spacing:.04em;
+  }
+
+  /* ---------- HOW TO USE ---------- */
+  .howto ol{
+    list-style:none;
+    counter-reset:step;
+    margin:0 0 26px;
+    padding:0;
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+  }
+  .howto li{
+    counter-increment:step;
+    position:relative;
+    padding-left:44px;
+  }
+  .howto li::before{
+    content:counter(step);
+    position:absolute;
+    left:0; top:0;
+    width:30px; height:30px;
+    border:1.5px solid var(--steel);
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:'IBM Plex Mono', monospace;
+    font-weight:600;
+    font-size:13px;
+    color:var(--steel-deep);
+  }
+  .howto h3{
+    font-family:'Roboto Slab', serif;
+    font-size:15.5px;
+    margin:2px 0 4px;
+  }
+  .howto p{
+    margin:0;
+    font-size:13.5px;
+    color:var(--graphite);
+    line-height:1.55;
+  }
+  .note-box{
+    border-left:3px solid var(--stamp);
+    background:rgba(166,64,47,0.06);
+    padding:14px 16px;
+    border-radius:0 6px 6px 0;
+    font-size:13px;
+    color:var(--ink);
+    line-height:1.6;
+  }
+  .note-box b{font-family:'IBM Plex Mono', monospace; font-size:11.5px; letter-spacing:.04em; text-transform:uppercase; color:var(--stamp); display:block; margin-bottom:6px;}
+
+  footer{
+    text-align:center;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    color:var(--graphite);
+    margin-top:30px;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important; transition:none !important;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="masthead">
+    <div class="seal" id="mastheadSeal"></div>
+    <div class="masthead-text">
+      <p class="eyebrow">Federal Standards Office · Registry No. 04471</p>
+      <h1>National Component Registry</h1>
+      <p class="tagline">Public ledger of certified manufacturers and logged parts</p>
+    </div>
+    <div class="cycle-tag">Q3 2026 CYCLE<br><span>Registry Open</span></div>
+  </header>
+
+  <nav class="tabbar" role="tablist">
+    <button class="tabbtn active" role="tab" data-tab="companies">Companies</button>
+    <button class="tabbtn" role="tab" data-tab="parts">Parts</button>
+    <button class="tabbtn" role="tab" data-tab="how">How to Use</button>
+  </nav>
+
+  <!-- COMPANIES -->
+  <section class="panel" id="panel-companies" role="tabpanel">
+    <div class="panel-head">
+      <div>
+        <h2>Certified Manufacturers</h2>
+        <p>Average standing score for the current quarter, drawn from incoming inspection and audit records.</p>
+      </div>
+      <input class="search" id="coSearch" type="text" placeholder="Search companies…">
+    </div>
+    <p class="count-note" id="coCount"></p>
+    <div class="list" id="coList"></div>
+  </section>
+
+  <!-- PARTS -->
+  <section class="panel" id="panel-parts" role="tabpanel" hidden>
+    <div class="panel-head">
+      <div>
+        <h2>Logged Parts</h2>
+        <p>Every part filed with the registry, with the number of certified builds it has appeared in to date.</p>
+      </div>
+      <input class="search" id="partSearch" type="text" placeholder="Search parts…">
+    </div>
+    <p class="count-note" id="partCount"></p>
+    <div class="list" id="partList"></div>
+  </section>
+
+  <!-- HOW TO USE -->
+  <section class="panel howto" id="panel-how" role="tabpanel" hidden>
+    <div class="panel-head">
+      <div>
+        <h2>How to Use the Registry</h2>
+        <p>A short guide to reading and citing records in this ledger.</p>
+      </div>
+    </div>
+    <ol>
+      <li>
+        <h3>Find a company or a part</h3>
+        <p>Open the Companies or Parts tab and use the search box to filter by name. Every record stays visible until you search, so you can also just scroll.</p>
+      </li>
+      <li>
+        <h3>Read the registry ID</h3>
+        <p>Each record carries a permanent ID in the form NCR-C-#### for companies and NCR-P-##### for parts. Use this ID, not the name, when referencing a record in a report — names can repeat, IDs never do.</p>
+      </li>
+      <li>
+        <h3>Check the score</h3>
+        <p>A company's score is its average standing for the quarter, from 0–100, based on inspection pass rates, defect reports, and on-time delivery. The colored tag under each name shows the tier at a glance: green for strong standing, blue for steady, amber for under review.</p>
+      </li>
+      <li>
+        <h3>Check the part count</h3>
+        <p>The number on a part record is a running total of how many certified builds have logged that part since it was first filed — not a current stock count.</p>
+      </li>
+    </ol>
+    <div class="note-box">
+      <b>Before you cite a record</b>
+      Scores refresh at the end of each quarter. If you're citing a figure in a formal document, note the cycle it came from — for example, "87.4, Q3 2026" — since the same company's score will change next cycle.
+    </div>
+  </section>
+
+  <footer>National Component Registry — Public Ledger — Cycle Q3 2026</footer>
+</div>
+
+<script>
+/* ---------------- DATA ---------------- */
+const companies = [
+  {id:"NCR-C-0042", name:"Halbrook Industrial", sector:"Fasteners & Hardware", score:91.4},
+  {id:"NCR-C-0107", name:"Corvide Systems", sector:"Electrical Systems", score:78.2},
+  {id:"NCR-C-0058", name:"Anvern Manufacturing", sector:"Structural Fabrication", score:64.9},
+  {id:"NCR-C-0193", name:"Ridgeline Components Co.", sector:"Fluid Control", score:88.6},
+  {id:"NCR-C-0071", name:"Tessalite Dynamics", sector:"Sensor Technology", score:95.1},
+  {id:"NCR-C-0126", name:"Marrow & Voss Fabrication", sector:"Materials Engineering", score:72.3},
+  {id:"NCR-C-0084", name:"Delta Crown Industries", sector:"Power Components", score:69.5},
+  {id:"NCR-C-0155", name:"Northfield Precision Works", sector:"Precision Bearings", score:83.0},
+];
+
+const parts = [
+  {id:"NCR-P-00231", name:"Hex Flange Bolt M8", cat:"Fasteners & Hardware", count:48213, icon:"bolt"},
+  {id:"NCR-P-00874", name:"Ceramic Insulated Gasket", cat:"Fluid Control", count:19042, icon:"gasket"},
+  {id:"NCR-P-01120", name:"Dual-Axis Ball Bearing", cat:"Precision Bearings", count:33590, icon:"bearing"},
+  {id:"NCR-P-00456", name:"Compact Pressure Valve", cat:"Fluid Control", count:8721, icon:"valve"},
+  {id:"NCR-P-02207", name:"Inline Circuit Fuse 5A", cat:"Electrical Systems", count:61208, icon:"fuse"},
+  {id:"NCR-P-01988", name:"PCB Mounting Bracket", cat:"Structural Fabrication", count:27664, icon:"bracket"},
+  {id:"NCR-P-00619", name:"Precision Coil Spring", cat:"Materials Engineering", count:15330, icon:"spring"},
+  {id:"NCR-P-01345", name:"Weatherproof Connector Housing", cat:"Electrical Systems", count:22987, icon:"connector"},
+  {id:"NCR-P-00982", name:"Thermal Sensor Module", cat:"Sensor Technology", count:9456, icon:"sensor"},
+  {id:"NCR-P-01502", name:"Helical Drive Gear", cat:"Power Components", count:13877, icon:"gear"},
+];
+
+/* ---------------- ICONS ---------------- */
+const ICONS = {
+  bolt:`<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polygon points="24,6 38,14 38,30 24,38 10,30 10,14"/><circle cx="24" cy="22" r="6"/></svg>`,
+  gasket:`<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="24" cy="22" r="16"/><circle cx="24" cy="22" r="8"/></svg>`,
+  bearing:`<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="24" cy="22" r="15"/><circle cx="24" cy="22" r="6"/><circle cx="24" cy="7" r="2.4" fill="currentColor" stroke="none"/><circle cx="39" cy="22" r="2.4" fill="currentColor" stroke="none"/><circle cx="24" cy="37" r="2.4" fill="currentColor" stroke="none"/><circle cx="9" cy="22" r="2.4" fill="currentColor" stroke="none"/></svg>`,
+  valve:`<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="14" y="18" width="20" height="12" rx="2"/><line x1="24" y1="18" x2="24" y2="8"/><line x1="17" y1="8" x2="31" y2="8"/><line x1="6" y1="24" x2="14" y2="24"/><line x1="34" y1="24" x2="42" y2="24"/></svg>`,
+  fuse:`<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><rect x="12" y="16" width="24" height="12" rx="6"/><line x1="4" y1="22" x2="12" y2="22"/><line x1="36" y1="22" x2="44" y2="22"/><line x1="18" y1="19" x2="30" y2="25"/></svg>`,
+  bracket:`<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M14 10 v18 h18"/><circle cx="14" cy="14" r="1.8" fill="currentColor" stroke="none"/><circle cx="28" cy="28" r="1.8" fill="currentColor" stroke="none"/></svg>`,
+  spring:`<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M8 24 q4 -12 8 0 q4 12 8 0 q4 -12 8 0 q4 12 8 0 q4 -12 8 0"/></svg>`,
+  connector:`<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="10" y="12" width="28" height="16" rx="3"/><line x1="16" y1="28" x2="16" y2="36"/><line x1="24" y1="28" x2="24" y2="36"/><line x1="32" y1="28" x2="32" y2="36"/></svg>`,
+  sensor:`<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="24" cy="24" r="6"/><path d="M24 12 v-4 M24 40 v-4 M12 24 h-4 M40 24 h-4 M15.5 15.5 l-2.8 -2.8 M35.3 35.3 l-2.8 -2.8 M15.5 32.5 l-2.8 2.8 M35.3 12.7 l-2.8 2.8"/></svg>`,
+  gear:`<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"><path d="M24 8 v5 M24 35 v5 M8 24 h5 M35 24 h5 M12.9 12.9 l3.5 3.5 M31.6 31.6 l3.5 3.5 M12.9 35.1 l3.5 -3.5 M31.6 16.4 l3.5 -3.5"/><circle cx="24" cy="24" r="11"/><circle cx="24" cy="24" r="4.5"/></svg>`,
+};
+
+/* quiet masthead emblem (echoes the stamp motif, single tone) */
+document.getElementById('mastheadSeal').innerHTML = `
+<svg width="56" height="56" viewBox="0 0 56 56" fill="none" stroke="#3D5A73" stroke-width="1.6">
+  <circle cx="28" cy="28" r="24"/>
+  <circle cx="28" cy="28" r="18" stroke-dasharray="2 3"/>
+  <path d="M28 16 v6 M28 34 v6 M16 28 h6 M34 28 h6" stroke-linecap="round"/>
+  <circle cx="28" cy="28" r="7"/>
+</svg>`;
+
+/* ---------------- HELPERS ---------------- */
+function tier(score){
+  if(score>=90) return {cls:'tier-high', label:'Excellent standing'};
+  if(score>=75) return {cls:'tier-mid', label:'Steady standing'};
+  return {cls:'tier-low', label:'Under review'};
+}
+
+// deterministic small rotation so re-renders (search) don't jitter the stamp
+function rotFor(id){
+  let h=0;
+  for(const ch of id) h = (h*31 + ch.charCodeAt(0)) % 360;
+  return (h % 13) - 6; // -6..6 deg
+}
+
+function stampSVG(score, id){
+  const rot = rotFor(id);
+  const uid = id.replace(/[^A-Za-z0-9]/g,'');
+  return `
+  <svg viewBox="0 0 80 80" style="transform:rotate(${rot}deg)">
+    <defs>
+      <path id="circ-${uid}" d="M40,40 m-30,0 a30,30 0 1,1 60,0 a30,30 0 1,1 -60,0"/>
+    </defs>
+    <circle cx="40" cy="40" r="34" fill="none" stroke="#A6402F" stroke-width="2"/>
+    <circle cx="40" cy="40" r="27" fill="none" stroke="#A6402F" stroke-width="1.3" stroke-dasharray="1.5 2.5"/>
+    <text font-family="IBM Plex Mono, monospace" font-size="6.4" letter-spacing="1.5" fill="#A6402F">
+      <textPath href="#circ-${uid}" startOffset="50%" text-anchor="middle">CERTIFIED · Q3 2026 ·</textPath>
+    </text>
+    <text x="40" y="45" text-anchor="middle" font-family="Roboto Slab, serif" font-weight="700" font-size="19" fill="#A6402F">${score.toFixed(1)}</text>
+  </svg>`;
+}
+
+function fmt(n){ return n.toLocaleString('en-US'); }
+
+/* ---------------- RENDER ---------------- */
+function renderCompanies(filter=""){
+  const f = filter.trim().toLowerCase();
+  const rows = companies
+    .filter(c => c.name.toLowerCase().includes(f) || c.sector.toLowerCase().includes(f) || c.id.toLowerCase().includes(f))
+    .sort((a,b)=> b.score - a.score);
+
+  document.getElementById('coCount').textContent = `${rows.length} of ${companies.length} companies shown`;
+  document.getElementById('coList').innerHTML = rows.map(c=>{
+    const t = tier(c.score);
+    return `
+    <div class="co-card">
+      <div class="stamp-wrap">${stampSVG(c.score, c.id)}</div>
+      <div class="co-main">
+        <p class="co-name">${c.name}</p>
+        <p class="co-sector">${c.sector}</p>
+        <span class="tier-tag ${t.cls}">${t.label}</span>
+      </div>
+      <div class="co-id">Registry ID<b>${c.id}</b></div>
+    </div>`;
+  }).join('') || `<p class="count-note">No companies match that search.</p>`;
+}
+
+function renderParts(filter=""){
+  const f = filter.trim().toLowerCase();
+  const rows = parts
+    .filter(p => p.name.toLowerCase().includes(f) || p.cat.toLowerCase().includes(f) || p.id.toLowerCase().includes(f))
+    .sort((a,b)=> b.count - a.count);
+
+  document.getElementById('partCount').textContent = `${rows.length} of ${parts.length} parts shown`;
+  document.getElementById('partList').innerHTML = rows.map(p=>`
+    <div class="part-card">
+      <div class="swatch">${ICONS[p.icon] || ''}</div>
+      <div class="part-main">
+        <p class="part-name">${p.name}</p>
+        <p class="part-cat">${p.cat}</p>
+      </div>
+      <div class="part-meta">
+        Part ID<b style="display:block;color:var(--ink);font-size:12.5px;margin:0 0 6px;">${p.id}</b>
+        <span class="part-count">${fmt(p.count)}<span> uses logged</span></span>
+      </div>
+    </div>`).join('') || `<p class="count-note">No parts match that search.</p>`;
+}
+
+/* ---------------- TABS ---------------- */
+const tabs = document.querySelectorAll('.tabbtn');
+const panels = {
+  companies: document.getElementById('panel-companies'),
+  parts: document.getElementById('panel-parts'),
+  how: document.getElementById('panel-how'),
+};
+tabs.forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    tabs.forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    Object.values(panels).forEach(p=>p.hidden = true);
+    panels[btn.dataset.tab].hidden = false;
+  });
+});
+
+document.getElementById('coSearch').addEventListener('input', e=>renderCompanies(e.target.value));
+document.getElementById('partSearch').addEventListener('input', e=>renderParts(e.target.value));
+
+renderCompanies();
+renderParts();
+</script>
+</body>
 </html>
