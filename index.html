@@ -40,7 +40,6 @@
     padding:28px 20px 80px;
   }
 
-  /* ---------- MASTHEAD ---------- */
   .masthead{
     display:flex;
     align-items:center;
@@ -94,7 +93,6 @@
     .masthead{gap:14px;}
   }
 
-  /* ---------- TABS ---------- */
   .tabbar{
     display:flex;
     gap:4px;
@@ -182,7 +180,6 @@
     margin:0 0 14px;
   }
 
-  /* ---------- COMPANY CARDS ---------- */
   .list{display:flex; flex-direction:column; gap:10px;}
 
   .co-card{
@@ -239,7 +236,6 @@
     font-size:13px;
   }
 
-  /* ---------- PART CARDS ---------- */
   .part-card{
     display:flex;
     align-items:center;
@@ -300,7 +296,6 @@
     letter-spacing:.04em;
   }
 
-  /* ---------- HOW TO USE ---------- */
   .howto ol{
     list-style:none;
     counter-reset:step;
@@ -384,7 +379,6 @@
     <button class="tabbtn" role="tab" data-tab="how">How to Use</button>
   </nav>
 
-  <!-- COMPANIES -->
   <section class="panel" id="panel-companies" role="tabpanel">
     <div class="panel-head">
       <div>
@@ -446,7 +440,6 @@
 </div>
 
 <script>
-/* ---------------- DATA ---------------- */
 const companies = [
   {id:"NCR-C-0001", name:"Magna International", sector:"Fasteners & Hardware", score:91.4},
   {id:"NCR-C-0002", name:"Ford Motor Company of Canada", sector:"Electrical Systems", score:78.2},
@@ -467,7 +460,7 @@ const companies = [
   {id:"NCR-C-0017", name:"Volkswagen Canada", sector:"Precision Bearings", score:83.0},
   {id:"NCR-C-0018", name:"Mazda Canada", sector:"Precision Bearings", score:83.0},
   {id:"NCR-C-0019", name:"Paccar of Canada", sector:"Precision Bearings", score:83.0},
-  {id:"NCR-C-0020", name:"Apple Canada", sector:"Precision Bearings", score:83.0},
+  {id:"NCR-C-0020", name:"Apple Canada", sector:"Precision Bearings", score:73.0},
   {id:"NCR-C-0021", name:"Samsung Electronics Canada", sector:"Precision Bearings", score:83.0},
   {id:"NCR-C-0022", name:"Microsoft Canada", sector:"Precision Bearings", score:83.0},
   {id:"NCR-C-0023", name:"Sony Canada", sector:"Precision Bearings", score:83.0},
@@ -498,40 +491,40 @@ const companies = [
   {id:"NCR-C-0048", name:"Hasbro Canada", sector:"", score:0.0},
   {id:"NCR-C-0049", name:"Spin Master", sector:"", score:0.0},
   {id:"NCR-C-0050", name:"Yeti Canada", sector:"", score:0.0},
-  {id:"NCR-C-0000", name:"Sleep Country Canada", sector:"", score:0.0},
-  {id:"NCR-C-0000", name:"Leon's Furniture", sector:"", score:0.0},
-  {id:"NCR-C-0000", name:"Canada Sportswear", sector:"", score:0.0},
-  {id:"NCR-C-0000", name:"Bombardier", sector:"", score:0.0},
-  {id:"NCR-C-0000", name:"CAE Incorporated", sector:"", score:0.0},
-  {id:"NCR-C-0000", name:"Pratt & Whitney Canada", sector:"", score:0.0},
-  {id:"NCR-C-0000", name:"Finning International", sector:"", score:0.0},
-  {id:"NCR-C-0000", name:"Toromont Industries", sector:"", score:0.0},
-  {id:"NCR-C-0000", name:"Bell Textron Canada", sector:"", score:0.0},
-  {id:"NCR-C-0000", name:"Airbus Helicopters Canada", sector:"", score:0.0},
-  {id:"NCR-C-0000", name:"ATS Corporation", sector:"", score:0.0},
-  {id:"NCR-C-0000", name:"General Electric Canada", sector:"", score:0.0},
-  {id:"NCR-C-0000", name:"Siemens Canada", sector:"", score:0.0},
-  {id:"NCR-C-0000", name:"Schneider Electric Canada", sector:"", score:0.0},
-  {id:"NCR-C-0000", name:"Honeywell Canada", sector:"", score:0.0},
-  {id:"NCR-C-0000", name:"Ballard Power Systems", sector:"", score:0.0},
-  {id:"NCR-C-0000", name:"Canam Group", sector:"", score:0.0},
-  {id:"NCR-C-0000", name:"Vicwest", sector:"", score:0.0},
-  {id:"NCR-C-0000", name:"Shawcor", sector:"", score:0.0},
-  {id:"NCR-C-0000", name:"Procter & Gamble Canada", sector:"", score:0.0},
-  {id:"NCR-C-0000", name:"George Weston Limited", sector:"", score:0.0},
-  {id:"NCR-C-0000", name:"Nestlé Canada", sector:"", score:0.0},
-  {id:"NCR-C-0000", name:"PepsiCo Canada", sector:"", score:0.0},
-  {id:"NCR-C-0000", name:"Kraft Heinz Canada", sector:"", score:0.0},
-  {id:"NCR-C-0000", name:"Molson Coors Canada", sector:"", score:0.0},
-  {id:"NCR-C-0000", name:"Labatt Brewing", sector:"", score:0.0},
-  {id:"NCR-C-0000", name:"Restaurant Brands International", sector:"", score:0.0},
-  {id:"NCR-C-0000", name:"Unilever Canada", sector:"", score:0.0},
-  {id:"NCR-C-0000", name:"Johnson & Johnson MedTech Canada", sector:"", score:0.0},
-  {id:"NCR-C-0000", name:"Bausch Health", sector:"", score:0.0},
-  {id:"NCR-C-0000", name:"Trudell Medical International", sector:"", score:0.0},
-  {id:"NCR-C-0000", name:"Medtronic Canada", sector:"", score:0.0},
-  {id:"NCR-C-0000", name:"Saputo", sector:"", score:0.0},
-  {id:"NCR-C-0000", name:"McCain Foods", sector:"", score:0.0},
+  {id:"NCR-C-0051", name:"Sleep Country Canada", sector:"", score:0.0},
+  {id:"NCR-C-0052", name:"Leon's Furniture", sector:"", score:0.0},
+  {id:"NCR-C-0053", name:"Canada Sportswear", sector:"", score:0.0},
+  {id:"NCR-C-0054", name:"Bombardier", sector:"", score:0.0},
+  {id:"NCR-C-0055", name:"CAE Incorporated", sector:"", score:0.0},
+  {id:"NCR-C-0056", name:"Pratt & Whitney Canada", sector:"", score:0.0},
+  {id:"NCR-C-0057", name:"Finning International", sector:"", score:0.0},
+  {id:"NCR-C-0058", name:"Toromont Industries", sector:"", score:0.0},
+  {id:"NCR-C-0059", name:"Bell Textron Canada", sector:"", score:0.0},
+  {id:"NCR-C-0060", name:"Airbus Helicopters Canada", sector:"", score:0.0},
+  {id:"NCR-C-0061", name:"ATS Corporation", sector:"", score:0.0},
+  {id:"NCR-C-0062", name:"General Electric Canada", sector:"", score:0.0},
+  {id:"NCR-C-0063", name:"Siemens Canada", sector:"", score:0.0},
+  {id:"NCR-C-0064", name:"Schneider Electric Canada", sector:"", score:0.0},
+  {id:"NCR-C-0065", name:"Honeywell Canada", sector:"", score:0.0},
+  {id:"NCR-C-0066", name:"Ballard Power Systems", sector:"", score:0.0},
+  {id:"NCR-C-0067", name:"Canam Group", sector:"", score:0.0},
+  {id:"NCR-C-0068", name:"Vicwest", sector:"", score:0.0},
+  {id:"NCR-C-0069", name:"Shawcor", sector:"", score:0.0},
+  {id:"NCR-C-0070", name:"Procter & Gamble Canada", sector:"", score:0.0},
+  {id:"NCR-C-0071", name:"George Weston Limited", sector:"", score:0.0},
+  {id:"NCR-C-0072", name:"Nestlé Canada", sector:"", score:0.0},
+  {id:"NCR-C-0073", name:"PepsiCo Canada", sector:"", score:0.0},
+  {id:"NCR-C-0074", name:"Kraft Heinz Canada", sector:"", score:0.0},
+  {id:"NCR-C-0075", name:"Molson Coors Canada", sector:"", score:0.0},
+  {id:"NCR-C-0076", name:"Labatt Brewing", sector:"", score:0.0},
+  {id:"NCR-C-0077", name:"Restaurant Brands International", sector:"", score:0.0},
+  {id:"NCR-C-0078", name:"Unilever Canada", sector:"", score:0.0},
+  {id:"NCR-C-0079", name:"Johnson & Johnson MedTech Canada", sector:"", score:0.0},
+  {id:"NCR-C-0080", name:"Bausch Health", sector:"", score:0.0},
+  {id:"NCR-C-0081", name:"Trudell Medical International", sector:"", score:0.0},
+  {id:"NCR-C-0082", name:"Medtronic Canada", sector:"", score:0.0},
+  {id:"NCR-C-0083", name:"Saputo", sector:"", score:0.0},
+  {id:"NCR-C-0084", name:"McCain Foods", sector:"", score:0.0},
 ];
 
 const parts = [
@@ -545,9 +538,38 @@ const parts = [
   {id:"NCR-P-01345", name:"Weatherproof Connector Housing", cat:"Electrical Systems", count:22987, icon:"connector"},
   {id:"NCR-P-00982", name:"Thermal Sensor Module", cat:"Sensor Technology", count:9456, icon:"sensor"},
   {id:"NCR-P-01502", name:"Helical Drive Gear", cat:"Power Components", count:13877, icon:"gear"},
+  {id:"NCR-P-00231", name:"Hex Flange Bolt M8", cat:"Fasteners & Hardware", count:48213, icon:"bolt"},
+  {id:"NCR-P-00874", name:"Ceramic Insulated Gasket", cat:"Fluid Control", count:19042, icon:"gasket"},
+  {id:"NCR-P-01120", name:"Dual-Axis Ball Bearing", cat:"Precision Bearings", count:33590, icon:"bearing"},
+  {id:"NCR-P-00456", name:"Compact Pressure Valve", cat:"Fluid Control", count:8721, icon:"valve"},
+  {id:"NCR-P-02207", name:"Inline Circuit Fuse 5A", cat:"Electrical Systems", count:61208, icon:"fuse"},
+  {id:"NCR-P-01988", name:"PCB Mounting Bracket", cat:"Structural Fabrication", count:27664, icon:"bracket"},
+  {id:"NCR-P-00619", name:"Precision Coil Spring", cat:"Materials Engineering", count:15330, icon:"spring"},
+  {id:"NCR-P-01345", name:"Weatherproof Connector Housing", cat:"Electrical Systems", count:22987, icon:"connector"},
+  {id:"NCR-P-00982", name:"Thermal Sensor Module", cat:"Sensor Technology", count:9456, icon:"sensor"},
+  {id:"NCR-P-01502", name:"Helical Drive Gear", cat:"Power Components", count:13877, icon:"gear"},
+  {id:"NCR-P-00231", name:"Hex Flange Bolt M8", cat:"Fasteners & Hardware", count:48213, icon:"bolt"},
+  {id:"NCR-P-00874", name:"Ceramic Insulated Gasket", cat:"Fluid Control", count:19042, icon:"gasket"},
+  {id:"NCR-P-01120", name:"Dual-Axis Ball Bearing", cat:"Precision Bearings", count:33590, icon:"bearing"},
+  {id:"NCR-P-00456", name:"Compact Pressure Valve", cat:"Fluid Control", count:8721, icon:"valve"},
+  {id:"NCR-P-02207", name:"Inline Circuit Fuse 5A", cat:"Electrical Systems", count:61208, icon:"fuse"},
+  {id:"NCR-P-01988", name:"PCB Mounting Bracket", cat:"Structural Fabrication", count:27664, icon:"bracket"},
+  {id:"NCR-P-00619", name:"Precision Coil Spring", cat:"Materials Engineering", count:15330, icon:"spring"},
+  {id:"NCR-P-01345", name:"Weatherproof Connector Housing", cat:"Electrical Systems", count:22987, icon:"connector"},
+  {id:"NCR-P-00982", name:"Thermal Sensor Module", cat:"Sensor Technology", count:9456, icon:"sensor"},
+  {id:"NCR-P-01502", name:"Helical Drive Gear", cat:"Power Components", count:13877, icon:"gear"},
+  {id:"NCR-P-00231", name:"Hex Flange Bolt M8", cat:"Fasteners & Hardware", count:48213, icon:"bolt"},
+  {id:"NCR-P-00874", name:"Ceramic Insulated Gasket", cat:"Fluid Control", count:19042, icon:"gasket"},
+  {id:"NCR-P-01120", name:"Dual-Axis Ball Bearing", cat:"Precision Bearings", count:33590, icon:"bearing"},
+  {id:"NCR-P-00456", name:"Compact Pressure Valve", cat:"Fluid Control", count:8721, icon:"valve"},
+  {id:"NCR-P-02207", name:"Inline Circuit Fuse 5A", cat:"Electrical Systems", count:61208, icon:"fuse"},
+  {id:"NCR-P-01988", name:"PCB Mounting Bracket", cat:"Structural Fabrication", count:27664, icon:"bracket"},
+  {id:"NCR-P-00619", name:"Precision Coil Spring", cat:"Materials Engineering", count:15330, icon:"spring"},
+  {id:"NCR-P-01345", name:"Weatherproof Connector Housing", cat:"Electrical Systems", count:22987, icon:"connector"},
+  {id:"NCR-P-00982", name:"Thermal Sensor Module", cat:"Sensor Technology", count:9456, icon:"sensor"},
+  {id:"NCR-P-01502", name:"Helical Drive Gear", cat:"Power Components", count:13877, icon:"gear"},
 ];
 
-/* ---------------- ICONS ---------------- */
 const ICONS = {
   bolt:`<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polygon points="24,6 38,14 38,30 24,38 10,30 10,14"/><circle cx="24" cy="22" r="6"/></svg>`,
   gasket:`<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="24" cy="22" r="16"/><circle cx="24" cy="22" r="8"/></svg>`,
@@ -561,7 +583,6 @@ const ICONS = {
   gear:`<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"><path d="M24 8 v5 M24 35 v5 M8 24 h5 M35 24 h5 M12.9 12.9 l3.5 3.5 M31.6 31.6 l3.5 3.5 M12.9 35.1 l3.5 -3.5 M31.6 16.4 l3.5 -3.5"/><circle cx="24" cy="24" r="11"/><circle cx="24" cy="24" r="4.5"/></svg>`,
 };
 
-/* quiet masthead emblem (echoes the stamp motif, single tone) */
 document.getElementById('mastheadSeal').innerHTML = `
 <svg width="56" height="56" viewBox="0 0 56 56" fill="none" stroke="#3D5A73" stroke-width="1.6">
   <circle cx="28" cy="28" r="24"/>
@@ -570,11 +591,10 @@ document.getElementById('mastheadSeal').innerHTML = `
   <circle cx="28" cy="28" r="7"/>
 </svg>`;
 
-/* ---------------- HELPERS ---------------- */
 function tier(score){
   if(score>=90) return {cls:'tier-high', label:'Excellent standing'};
-  if(score>=75) return {cls:'tier-mid', label:'Steady standing'};
-  return {cls:'tier-low', label:'Under review'};
+  if(score>=65) return {cls:'tier-mid', label:'Moderate standing'};
+  return {cls:'tier-low', label:'Poor standing'};
 }
 
 // deterministic small rotation so re-renders (search) don't jitter the stamp
@@ -585,7 +605,7 @@ function rotFor(id){
 }
 
 function stampSVG(score, id){
-  const rot = rotFor(id);
+  const rot = 0;
   const uid = id.replace(/[^A-Za-z0-9]/g,'');
   return `
   <svg viewBox="0 0 80 80" style="transform:rotate(${rot}deg)">
