@@ -429,6 +429,19 @@
     </div>
   </section>
 
+  <section class="panel policy" id="panel-policy" role="tabpanel" hidden>
+    <div class="panel-head">
+      <div>
+        <h2>See the Policy</h2>
+        <p>To see the National Sustainability and Protection Policy, click <a src="https://www.google.com">here</a>.</p>
+      </div>
+    </div>
+    <div class="note-box">
+      <b>Note: </b>
+      This policy is subject to change and though we will try to retail the newest version, the linked policy may not always be up to date.
+    </div>
+  </section>
+
   <footer>Government of Canada — National Component Registry — Cycle Q3 2026</footer>
 </div>
 
@@ -655,6 +668,7 @@ const panels = {
   companies: document.getElementById('panel-companies'),
   parts: document.getElementById('panel-parts'),
   how: document.getElementById('panel-how'),
+  policy: document.getElementById('panel-policy'),
 };
 tabs.forEach(btn=>{
   btn.addEventListener('click', ()=>{
