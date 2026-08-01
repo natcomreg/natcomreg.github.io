@@ -1,1 +1,8 @@
-
+The documents in this repository are intellectual property of the stakeholders below and are not permitted to be copied or redistributed in any manner unless being done so by said stakeholders:
+Allyson Van Dijk,
+Ashwin Kronwald,
+Josiah Pinheiro,
+Sean Afolabi,
+Shruthi Srinivasan,
+Tommy Wang,
+Vivian Chen
